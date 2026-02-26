@@ -1,45 +1,34 @@
-FROM php:8.3-fpm
+FROM php:8.2-apache
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    git \
-    unzip \
-    zip \
-    libzip-dev \
     libpng-dev \
-    libjpeg-dev \
-    libfreetype6-dev \
     libonig-dev \
     libxml2-dev \
-    libicu-dev \
-    libcurl4-openssl-dev \
-    libssl-dev \
-    pkg-config \
-    libcalendar-ocaml-dev \
-    && docker-php-ext-install pdo pdo_mysql mysqli zip gd calendar intl
+    zip \
+    unzip \
+    git \
+    curl
 
-# Install Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Install PHP extensions
+RUN docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd
+
+# Enable Apache rewrite
+RUN a2enmod rewrite
 
 # Set working directory
-WORKDIR /var/www
+WORKDIR /var/www/html
 
 # Copy project files
-COPY . .
+COPY . /var/www/html
 
-# Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader
+# Set Apache document root to /public
+ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 
-# Fix permissions
-RUN chown -R www-data:www-data /var/www
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-EXPOSE 8000
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html
 
-CMD php artisan config:clear && \
-    php artisan cache:clear && \
-    php artisan config:cache && \
-    php artisan route:cache && \
-    php artisan storage:link || true && \
-    php artisan migrate --force && \
-    php artisan db:seed --force || true && \
-    php artisan serve --host=0.0.0.0 --port=10000
+EXPOSE 80
