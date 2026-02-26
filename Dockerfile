@@ -1,4 +1,3 @@
-# Use official PHP image with Apache
 FROM php:8.2-apache
 
 # Install system dependencies
@@ -9,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libzip-dev \
     libxml2-dev \
+    libpq-dev \
     unzip \
     git \
     curl \
@@ -45,15 +45,13 @@ WORKDIR /var/www/html
 # Copy project files
 COPY . .
 
-# Install PHP dependencies
+# Install dependencies
 RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
 
-# Set permissions
+# Fix permissions
 RUN chown -R www-data:www-data storage bootstrap/cache
 RUN chmod -R 775 storage bootstrap/cache
 
-# Expose port 80
 EXPOSE 80
 
-# Start Apache
 CMD ["apache2-foreground"]
