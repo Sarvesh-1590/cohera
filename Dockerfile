@@ -1,27 +1,38 @@
-FROM php:8.2-cli
+FROM php:8.3-fpm
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
-    curl \
+    zip \
     libzip-dev \
-    zip
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    libonig-dev \
+    libxml2-dev \
+    libicu-dev \
+    libcurl4-openssl-dev \
+    libssl-dev \
+    pkg-config \
+    libcalendar-ocaml-dev \
+    && docker-php-ext-install pdo pdo_mysql mysqli zip gd calendar intl
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Set working directory
-WORKDIR /app
+WORKDIR /var/www
 
-# Copy files
+# Copy project files
 COPY . .
 
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Expose port
-EXPOSE 10000
+# Fix permissions
+RUN chown -R www-data:www-data /var/www
 
-# Start Laravel
-CMD php artisan serve --host=0.0.0.0 --port=10000
+EXPOSE 8000
+
+CMD php artisan serve --host=0.0.0.0 --port=8000
