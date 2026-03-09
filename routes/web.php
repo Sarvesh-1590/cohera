@@ -16,3 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+use App\Http\Controllers\Auth\GoogleController;
+
+// Google OAuth routes for admin
+Route::get('admin/auth/google', [GoogleController::class, 'redirectToGoogle'])->name('admin.auth.google');
+Route::get('admin/auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('admin.auth.google.callback');
+
+// Also support /auth/google/callback for Google OAuth (to match Google redirect)
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);

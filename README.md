@@ -1,21 +1,6 @@
-<p align="center">
-    <a href="https://krayincrm.com">
-        <picture>
-            <source media="(prefers-color-scheme: dark)" height="100" srcset="packages/Webkul/Admin/src/Resources/assets/images/dark-logo.svg">
-            <source media="(prefers-color-scheme: light)" height="100" srcset="packages/Webkul/Admin/src/Resources/assets/images/logo.svg">
-            <img alt="Krayin CRM" height="100" src="packages/Webkul/Admin/src/Resources/assets/images/logo.svg">
-        </picture>
-    </a>
-</p>
+# Cohera CRM
 
-<p align="center">
-<a href="https://packagist.org/packages/krayin/laravel-crm"><img src="https://poser.pugx.org/krayin/laravel-crm/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/krayin/laravel-crm"><img src="https://poser.pugx.org/krayin/laravel-crm/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/krayin/laravel-crm"><img src="https://poser.pugx.org/krayin/laravel-crm/license.svg" alt="License"></a>
-</p>
-
-
-![enter image description here](https://raw.githubusercontent.com/krayin/temp-media/master/dashboard.png)
+![Cohera CRM Dashboard](C:\Users\sarve\.gemini\antigravity\brain\2dede58e-b7c0-420f-a7bc-1547bbed6044\cohera_dashboard_1773158342844.png)
 
 ## Topics
 
@@ -23,27 +8,12 @@
 2. [Documentation](#documentation)
 3. [Requirements](#requirements)
 4. [Installation & Configuration](#installation-and-configuration)
-4. [Docker Installation](https://devdocs.krayincrm.com/2.0/introduction/docker.html)
-5. [License](#license)
-6. [Security Vulnerabilities](#security-vulnerabilities)
 
 ### Introduction
 
-[Krayin CRM](https://krayincrm.com) is a hand tailored CRM framework built on some of the hottest opensource technologies
-such as [Laravel](https://laravel.com) (a [PHP](https://secure.php.net/) framework) and [Vue.js](https://vuejs.org)
-a progressive Javascript framework.
+**Cohera CRM** is a hand-tailored CRM framework built on some of the hottest open-source technologies such as Laravel (a PHP framework) and Vue.js (a progressive Javascript framework).
 
-**Free & Opensource Laravel CRM solution for SMEs and Enterprises for complete customer lifecycle management.**
-
-**Read our documentation: [Krayin CRM Docs](https://devdocs.krayincrm.com/)**
-
-**We also have a forum for any type of concerns, feature requests, or discussions. Please visit: [Krayin CRM Forums](https://forums.krayincrm.com/)**
-
-# Visit our live [Demo](https://demo.krayincrm.com)
-
-<a href="javascript:void();">
-    <img class="flag-img" src="https://raw.githubusercontent.com/krayin/temp-media/master/visit-our-live-demo.png" alt="Chinese" width="100%">
-</a>
+It features a complete customer lifecycle management solution for SMEs and Enterprises.
 
 It packs in lots of features that will allow your E-Commerce business to scale in no time:
 
@@ -51,15 +21,13 @@ It packs in lots of features that will allow your E-Commerce business to scale i
 -   Admin Dashboard.
 -   Custom Attributes.
 -   Built on Modular Approach.
--   Email parsing via Sendgrid.
--   Check out [these features and more](https://krayincrm.com/features/).
 
 **For Developers**:
-Take advantage of two of the hottest frameworks used in this project -- Laravel and Vue.js -- both of which have been used in Krayin CRM.
+Take advantage of two of the hottest frameworks used in this project -- Laravel and Vue.js -- both of which have been used in Cohera CRM.
 
 ### Documentation
 
-#### Krayin Documentation [https://devdocs.krayincrm.com](https://devdocs.krayincrm.com)
+Please refer to the internal documentation for Cohera CRM setup and usage guides.
 
 ### Requirements
 
@@ -75,7 +43,7 @@ Take advantage of two of the hottest frameworks used in this project -- Laravel 
 
 ##### Execute these commands below, in order
 
-```
+```bash
 composer create-project
 ```
 
@@ -83,11 +51,11 @@ composer create-project
 
 -   Also, Configure the **Mail** and **Database** parameters inside **.env** file.
 
-```
-php artisan krayin-crm:install
+```bash
+php artisan cohera-crm:install
 ```
 
-**To execute Krayin**:
+**To execute Cohera**:
 
 ##### On server:
 
@@ -96,48 +64,22 @@ In order to do that, run the command below:
 
 > composer install --no-dev
 
-```
+```text
 Open the specified entry point in your hosts file in your browser or make an entry in hosts file if not done.
 ```
 
 ##### On local:
 
-```
+```bash
 php artisan route:clear
 php artisan serve
 ```
-
 
 **How to log in as admin:**
 
 > _http(s)://example.com/admin/login_
 
+```text
+email: admin@example.com
+password: admin123
 ```
-email:admin@example.com
-password:admin123
-```
-### Krayin CRM Multi Tenant SaaS
-
-[Krayin CRM Multi Tenant SaaS](https://krayincrm.com/extensions/krayin-crm-multi-tenant-saas-extension/) Krayin Multitenant SaaS is a Laravel-based CRM solution that allows multiple businesses (tenants) to use a single application instance while keeping their data isolated and secure.
-
-![enter image description here](https://raw.githubusercontent.com/krayin/temp-media/master/krayin-saas.png)
-
-### WhatsApp CRM Integration
-
-[Krayin CRM WhatsApp](https://krayincrm.com/extensions/krayin-crm-whatsapp-extension/) Extension enables the store administrator to generate leads via their WhatsApp number.
-
-![enter image description here](https://raw.githubusercontent.com/krayin/temp-media/master/krayin-crm-whatsapp-integration.png)
-
-### VoIP CRM Integration
-
-[Krayin CRM VoIP](https://krayincrm.com/extensions/krayin-crm-voip/) extension allows the user to make Trunk calls over a broadband Internet connection and the user can also perform Inbound routes.
-
-![enter image description here](https://raw.githubusercontent.com/krayin/temp-media/master/krayin-voip.png)
-
-### License
-
-Krayin CRM is a fully open-source CRM framework which will always be free under the [MIT License](https://github.com/krayin/laravel-crm/blob/2.1/LICENSE).
-
-### Security Vulnerabilities
-
-Please don't disclose security vulnerabilities publicly. If you find any security vulnerability in Krayin CRM then please email us: sales@krayincrm.com.
